@@ -52,6 +52,32 @@ Once puptoo is sending the data through, you'll need to tell the inventory
 service to save it on the model object. Here is an example of adding a boolean:
 
 ```diff
+
+diff --git a/app/models.py b/app/models.py
+index 99fe3ca3..bd95fba5 100644
+--- a/app/models.py
++++ b/app/models.py
+@@ -279,6 +279,7 @@ class SystemProfileSchema(Schema):
+     number_of_cpus = fields.Int()
+     number_of_sockets = fields.Int()
+     cores_per_socket = fields.Int()
++    sap_system = fields.Bool()
+     system_memory_bytes = fields.Int()
+     infrastructure_type = fields.Str(validate=validate.Length(max=100))
+     infrastructure_vendor = fields.Str(validate=validate.Length(max=100))
+diff --git a/swagger/api.spec.yaml b/swagger/api.spec.yaml
+index e822f182..f75fcde3 100644
+--- a/swagger/api.spec.yaml
++++ b/swagger/api.spec.yaml
+@@ -1018,6 +1018,8 @@ components:
+           type: integer
+         cores_per_socket:
+           type: integer
++        sap_system:
++          type: boolean
+         system_memory_bytes:
+           type: integer
+           format: int64
 ```
 
 To confirm it landed, check that `/api/inventory/v1/openapi.json` has your new
