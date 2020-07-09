@@ -19,6 +19,14 @@ queue. The historical system profile archiver picks up the message and saves
 the system profile. It is now available under
 `/api/historical-system-profiles/` for 7 days.
 
+## prerequisites:
+
+ * check out https://github.com/beav/drift-dev-setup and get it running. If you run `docker-compose -f full-stack.yml ps` and see only "exit 0" or "running", you are in good shape.
+ * install a local copy of s2i. You'll need this later for rebuilding stuff:
+ ```bash
+ mkdir /tmp/local-s2i; wget -c https://github.com/openshift/source-to-image/releases/download/v1.3.0/source-to-image-v1.3.0-eed2850f-linux-amd64.tar.gz -O - | tar -xz -C /tmp/local-s2i
+ ```
+
 # checklist for adding a new fact
 
 There are a lot of small steps to add a new fact. It's best to step through
